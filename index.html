@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechToFun - Empowering Your Tech Journey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Theme Variables */
+        :root {
+            /* Default Theme (Black & White) */
+            --primary: #ffffff;
+            --secondary: #000000;
+            --accent: #64ffda;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --bg-primary: #000000;
+            --bg-secondary: #111111;
+            --bg-card: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Black & Red Theme */
+        [data-theme="red"] {
+            --primary: #ffffff;
+            --secondary: #000000;
+            --accent: #ff4444;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --bg-primary: #000000;
+            --bg-secondary: #1a0000;
+            --bg-card: rgba(255, 68, 68, 0.05);
+        }
+
+        /* Dark Blue Theme */
+        [data-theme="blue"] {
+            --primary: #ffffff;
+            --secondary: #000000;
+            --accent: #00a8ff;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --bg-primary: #000033;
+            --bg-secondary: #000066;
+            --bg-card: rgba(0, 168, 255, 0.05);
+        }
+
+        /* Purple Theme */
+        [data-theme="purple"] {
+            --primary: #ffffff;
+            --secondary: #000000;
+            --accent: #9c27b0;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --bg-primary: #1a001a;
+            --bg-secondary: #330033;
+            --bg-card: rgba(156, 39, 176, 0.05);
+        }
+
+        /* Theme Switcher Styles */
+        .theme-switcher {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            z-index: 1000;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-btn.black-white {
+            background: linear-gradient(45deg, #000000 50%, #ffffff 50%);
+        }
+
+        .theme-btn.black-red {
+            background: linear-gradient(45deg, #000000 50%, #ff4444 50%);
+        }
+
+        .theme-btn.black-blue {
+            background: linear-gradient(45deg, #000000 50%, #00a8ff 50%);
+        }
+
+        .theme-btn.black-purple {
+            background: linear-gradient(45deg, #000000 50%, #9c27b0 50%);
+        }
+
+        /* Update all sections to use theme variables */
+        body {
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            color: var(--text-primary);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Updated Logo Styles */
+        .logo {
+            width: 120px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 5px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(1.2) contrast(1.2);
+            transition: all 0.3s ease;
+            background: transparent;
+            border-radius: 8px;
+        }
+
+        .hero-logo {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 2rem;
+            animation: logoFloat 6s ease-in-out infinite;
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hero-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(1.2) contrast(1.2);
+            background: transparent;
+            border-radius: 16px;
+        }
+
+        .footer-logo {
+            width: 180px;
+            height: 90px;
+            margin: 0 auto 1rem;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 10px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(1.2) contrast(1.2);
+            background: transparent;
+            border-radius: 12px;
+        }
+
+        /* Enhanced Header Styles */
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.98);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo::before {
+            content: 'TTF';
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #64ffda, 0 0 10px #64ffda, 0 0 15px #64ffda;
+            }
+            to {
+                text-shadow: 0 0 10px #64ffda, 0 0 20px #64ffda, 0 0 30px #64ffda;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: #64ffda;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+
+        /* Enhanced Landing Page */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.05) 0px,
+                rgba(255, 255, 255, 0.05) 1px,
+                transparent 1px,
+                transparent 10px
+            );
+            animation: backgroundMove 20s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            animation: logoFloat 6s ease-in-out infinite;
+        }
+
+        .hero-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ffffff, #cccccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .hero p {
+            font-size: 1.8rem;
+            color: #cccccc;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+
+        .cta-primary, .cta-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            animation: slideUp 1s ease 0.4s backwards;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #64ffda;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #8892b0;
+        }
+
+        /* Sections */
+        .section {
+            padding: 8rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Enhanced Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--accent);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, var(--accent), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .service-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(100, 255, 218, 0.15);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--accent), #00b4d8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ccd6f6;
+        }
+
+        .service-card p {
+            color: #8892b0;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .service-features li {
+            margin: 0.5rem 0;
+            color: #8892b0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-features li::before {
+            content: '→';
+            color: var(--accent);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .social-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-card:hover {
+            background: rgba(100, 255, 218, 0.2);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mentoring Section Styles */
+        .mentoring-container {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .mentoring-card {
+            background: rgba(100, 255, 218, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .mentoring-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .mentoring-card ul li {
+            margin: 0.8rem 0;
+            font-size: 1.1rem;
+        }
+
+        .payment-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 1.5rem auto;
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .payment-instructions {
+            margin-top: 1.5rem;
+            font-weight: 600;
+        }
+
+        .payment-instructions ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .payment-instructions li {
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.4rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .footer-content {
+                gap: 2rem;
+            }
+        }
+
+        /* Blog Section Styles */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .blog-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            background: var(--bg-card);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .blog-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            color: var(--text-primary);
+        }
+
+        .blog-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .blog-meta i {
+            color: var(--accent);
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-weight: 600;
+            transition: gap 0.3s ease;
+        }
+
+        .blog-card:hover .read-more {
+            gap: 1rem;
+        }
+
+        .read-more i {
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover .read-more i {
+            transform: translateX(5px);
+        }
+
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shine {
+            from {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .section h2 {
+                font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--text-primary), var(--accent), var(--text-primary));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        .service-card, .blog-card {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .service-icon, .blog-tag {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            top: -50%;
+            left: -50%;
+            animation: gradientBG 15s ease infinite;
+            z-index: 0;
+        }
+
+        .cta-button {
+            background: linear-gradient(90deg, var(--accent), #ffffff, var(--accent));
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+            border: none;
+            color: var(--bg-primary);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: 5rem 2rem 2rem;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.3;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo-section {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .footer-logo-section p {
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .footer-section {
+            position: relative;
+        }
+
+        .footer-section h3 {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-section:hover h3::after {
+            width: 100%;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links li:hover {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-links i {
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links a:hover i {
+            transform: translateX(3px);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            justify-content: flex-start;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icon:hover::before {
+            opacity: 0.1;
+        }
+
+        .social-icon i {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover i {
+            transform: scale(1.1);
+        }
+
+        .footer-bottom {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .footer-bottom::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.3;
+        }
+
+        .footer-bottom p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Add these new animations to the existing CSS section */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: rotate(-180deg) scale(0);
+            }
+            to {
+                opacity: 1;
+                transform: rotate(0) scale(1);
+            }
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glowPulse {
+            0% { box-shadow: 0 0 5px var(--accent); }
+            50% { box-shadow: 0 0 20px var(--accent); }
+            100% { box-shadow: 0 0 5px var(--accent); }
+        }
+
+        /* Update service card styles */
+        .service-card {
+            animation: fadeInUp 0.6s ease forwards;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon {
+            animation: rotateIn 0.8s ease forwards;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            animation: pulse 1s infinite;
+        }
+
+        /* Update hero section animations */
+        .hero-content {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero h1 {
+            animation: slideInLeft 1s ease forwards;
+        }
+
+        .hero p {
+            animation: slideInRight 1s ease forwards;
+        }
+
+        .cta-buttons {
+            animation: fadeInUp 1s ease 0.5s forwards;
+            opacity: 0;
+        }
+
+        /* Update blog card animations */
+        .blog-card {
+            animation: fadeInUp 0.6s ease forwards;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog-image img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+
+        /* Update social card animations */
+        .social-card {
+            animation: fadeInUp 0.6s ease forwards;
+            transition: all 0.4s ease;
+        }
+
+        .social-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icon {
+            animation: floatUpDown 3s ease-in-out infinite;
+        }
+
+        /* Update section animations */
+            .section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Add animation to section headings */
+        .section h2 {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.6s ease;
+        }
+
+        .section.visible h2::after {
+            width: 100%;
+        }
+
+        /* Add animation to service features */
+        .service-features li {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-features li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Add animation to stats */
+        .stat-item {
+            animation: floatUpDown 3s ease-in-out infinite;
+        }
+
+        .stat-number {
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        /* About Section Styles */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .about-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            animation: floatUpDown 3s ease-in-out infinite;
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .about-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .about-features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .about-features li {
+            margin: 0.5rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .about-features li::before {
+            content: '→';
+            color: var(--accent);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .stat-box {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-box .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-box .stat-label {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .about-timeline {
+            margin-top: 4rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--accent);
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            width: 50%;
+            padding-right: 3rem;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+            padding-right: 0;
+            padding-left: 3rem;
+        }
+
+        .timeline-date {
+            position: absolute;
+            right: -3rem;
+            top: 0;
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+        }
+
+        .timeline-item:nth-child(even) .timeline-date {
+            right: auto;
+            left: -3rem;
+        }
+
+        .timeline-content {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            right: -1rem;
+            top: 1rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: auto;
+            left: -1rem;
+        }
+
+        .timeline-content h4 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 2rem;
+                padding-right: 0;
+                margin-left: 0;
+            }
+
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+                padding-left: 2rem;
+            }
+
+            .timeline-date {
+                left: -2rem;
+                right: auto;
+            }
+
+            .timeline-item:nth-child(even) .timeline-date {
+                left: -2rem;
+            }
+
+            .timeline-content::before {
+                left: -1rem;
+                right: auto;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -1rem;
+            }
+        }
+
+        /* Add these styles for better blog card interaction */
+        .blog-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        .read-more i {
+            transition: transform 0.3s ease;
+        }
+
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Add Theme Switcher -->
+    <div class="theme-switcher">
+        <button class="theme-btn black-white" data-theme="default" title="Black & White Theme"></button>
+        <button class="theme-btn black-red" data-theme="red" title="Black & Red Theme"></button>
+        <button class="theme-btn black-blue" data-theme="blue" title="Black & Blue Theme"></button>
+        <button class="theme-btn black-purple" data-theme="purple" title="Black & Purple Theme"></button>
+    </div>
+
+    <!-- Update Header with correct logo path -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.jpg" alt="TechToFun Logo">
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="internships.html">Internships</a>
+                <a href="#mentoring">Mentoring</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Updated Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="logo.jpg" alt="TechToFun Logo">
+            </div>
+            <h1>Welcome to TechToFun</h1>
+            <p>Empowering the next generation of tech innovators through education, community, and hands-on experience.</p>
+            <div class="cta-buttons">
+                <a href="#services" class="cta-primary">Explore Services</a>
+                <a href="#mentoring" class="cta-secondary">Start Learning</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Active Members</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Success Stories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Expert Mentors</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="section-content">
+            <h2>Our Services</h2>
+            <p class="section-description">Discover a world of opportunities with our comprehensive tech education platform</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎓</div>
+                    <h3>Free Courses</h3>
+                    <p>Access premium tech courses completely free. Master the latest technologies and frameworks.</p>
+                    <ul class="service-features">
+                        <li>AI & Machine Learning</li>
+                        <li>Web Development</li>
+                        <li>Cloud Computing</li>
+                        <li>Data Science</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📰</div>
+                    <h3>Latest IT News</h3>
+                    <p>Stay ahead of the curve with real-time updates on tech trends and industry insights.</p>
+                    <ul class="service-features">
+                        <li>Daily Tech Updates</li>
+                        <li>Industry Analysis</li>
+                        <li>Tech Innovations</li>
+                        <li>Market Trends</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💡</div>
+                    <h3>Hackathons</h3>
+                    <p>Participate in exciting hackathons and showcase your skills to the world.</p>
+                    <ul class="service-features">
+                        <li>Monthly Events</li>
+                        <li>Cash Prizes</li>
+                        <li>Industry Mentors</li>
+                        <li>Networking Opportunities</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📅</div>
+                    <h3>Upcoming Events</h3>
+                    <p>Join exclusive webinars and workshops led by industry experts.</p>
+                    <ul class="service-features">
+                        <li>Live Webinars</li>
+                        <li>Workshop Sessions</li>
+                        <li>Tech Conferences</li>
+                        <li>Networking Events</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤝</div>
+                    <h3>Community Support</h3>
+                    <p>Get 24/7 support from our vibrant community of tech enthusiasts.</p>
+                    <ul class="service-features">
+                        <li>24/7 Support</li>
+                        <li>Peer Learning</li>
+                        <li>Code Reviews</li>
+                        <li>Project Collaboration</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Career Guidance</h3>
+                    <p>Get personalized career advice and guidance from industry experts.</p>
+                    <ul class="service-features">
+                        <li>Resume Reviews</li>
+                        <li>Interview Prep</li>
+                        <li>Career Planning</li>
+                        <li>Job Placement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="section-content">
+            <h2>About TechToFun</h2>
+            <p class="section-description">Empowering the next generation of tech innovators through education, community, and hands-on experience.</p>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To make technology education accessible, engaging, and fun for everyone, regardless of their background or experience level.</p>
+                    <ul class="about-features">
+                        <li>Democratizing Tech Education</li>
+                        <li>Building Global Communities</li>
+                        <li>Fostering Innovation</li>
+                        <li>Creating Career Opportunities</li>
+                    </ul>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Our Community</h3>
+                    <p>Join a vibrant community of tech enthusiasts, learners, and professionals from around the world.</p>
+                    <ul class="about-features">
+                        <li>10K+ Active Members</li>
+                        <li>50+ Expert Mentors</li>
+                        <li>500+ Success Stories</li>
+                        <li>24/7 Support</li>
+                    </ul>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Our Approach</h3>
+                    <p>We believe in learning by doing, with a focus on practical skills and real-world projects.</p>
+                    <ul class="about-features">
+                        <li>Hands-on Learning</li>
+                        <li>Project-Based Education</li>
+                        <li>Industry Mentorship</li>
+                        <li>Career Guidance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="about-stats">
+                <div class="stat-box">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Free Courses</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Partner Companies</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            </div>
+
+            <div class="about-timeline">
+                <h3>Our Journey</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Nov 2023</div>
+                        <div class="timeline-content">
+                            <h4>Foundation</h4>
+                            <p>TechToFun was founded with a vision to make tech education accessible to all. Started with our first community of 100 members.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Dec 2023</div>
+                        <div class="timeline-content">
+                            <h4>First Milestone</h4>
+                            <p>Launched our first free course and reached 500+ members. Started our weekly tech talks series.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Jan 2024</div>
+                        <div class="timeline-content">
+                            <h4>Growth</h4>
+                            <p>Expanded to 2,000+ members. Launched our first hackathon with 100+ participants.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Feb 2024</div>
+                        <div class="timeline-content">
+                            <h4>Innovation</h4>
+                            <p>Introduced AI-powered learning paths and virtual mentoring sessions. Reached 5,000+ members.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Mar 2024</div>
+                        <div class="timeline-content">
+                            <h4>Expansion</h4>
+                            <p>Launched mobile app beta version. Partnered with 10 leading tech companies for internships.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Apr 2024</div>
+                        <div class="timeline-content">
+                            <h4>Community Growth</h4>
+                            <p>Reached 10,000+ active members. Launched our first international webinar series.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">May 2024</div>
+                        <div class="timeline-content">
+                            <h4>Future Vision</h4>
+                            <p>Continuing to innovate and expand our global tech community. Planning to launch new specialized courses.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentoring Section -->
+    <section class="section" id="mentoring">
+        <div class="section-content">
+            <h2>Book a Mentoring Session</h2>
+            <p>Get personalized guidance from our expert mentors for just ₹99!</p>
+            <div class="mentoring-container">
+                <div class="mentoring-card">
+                    <h3>What you'll get:</h3>
+                    <ul>
+                        <li>✅ 30-minute personalized mentoring session</li>
+                        <li>✅ Career guidance and roadmap</li>
+                        <li>✅ Technical interview preparation</li>
+                        <li>✅ Project guidance</li>
+                        <li>✅ Resume review</li>
+            </ul>
+                    <div class="payment-section">
+                        <h3>Payment Details</h3>
+                        <p>Scan the QR code to pay ₹99</p>
+                        <div class="qr-code">
+                            <img src="your-qr-code.png" alt="Payment QR Code" id="paymentQR">
+                        </div>
+                        <p class="payment-instructions">After payment:</p>
+                        <ol>
+                            <li>Take a screenshot of your payment confirmation</li>
+                            <li>Send it to our WhatsApp number: <a href="https://wa.me/91820658046" target="_blank">820658046</a></li>
+                            <li>Include your transaction ID in the message</li>
+                            <li>Our team will contact you within 24 hours to schedule your session</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="section-content">
+            <h2>Contact Us</h2>
+            <p>Have questions or need support? Reach out to us through any of the following channels:</p>
+            <div class="contact-grid">
+                <a href="https://chat.whatsapp.com/HPoRpcD944UCNViMqYHfrX" class="social-card" target="_blank">
+                    <i class="fab fa-whatsapp fa-3x"></i>
+                    <h3>WhatsApp</h3>
+                    <p>Join our community for instant support and updates.</p>
+                </a>
+                <a href="https://t.me/techtofun" class="social-card" target="_blank">
+                    <i class="fab fa-telegram fa-3x"></i>
+                    <h3>Telegram</h3>
+                    <p>Get daily tech news and updates on Telegram.</p>
+                </a>
+                <a href="https://www.linkedin.com/company/tech-to-fun/" class="social-card" target="_blank">
+                    <i class="fab fa-linkedin fa-3x"></i>
+                    <h3>LinkedIn</h3>
+                    <p>Connect with professionals and grow your network.</p>
+                </a>
+                <a href="https://www.instagram.com/_techtofun" class="social-card" target="_blank">
+                    <i class="fab fa-instagram fa-3x"></i>
+                    <h3>Instagram</h3>
+                    <p>Follow us for tech tips, memes, and fun content.</p>
+                </a>
+                <a href="https://www.youtube.com/@techtofun" class="social-card" target="_blank">
+                    <i class="fab fa-youtube fa-3x"></i>
+                    <h3>YouTube</h3>
+                    <p>Watch tutorials, webinars, and tech talks.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section
+    <section class="section" id="blog">
+        <div class="section-content">
+            <h2>Latest from Our Blog</h2>
+            <p class="section-description">Stay updated with the latest tech trends, tutorials, and industry insights</p>
+            <div class="blog-grid">
+                <a href="blogs/ai-ml.html" class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog/ai-ml.jpg" alt="AI Blog">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-tag">Artificial Intelligence</span>
+                        <h3 class="blog-title">The Future of AI: Transforming Tech Industry in 2024</h3>
+                        <p class="blog-excerpt">Explore how artificial intelligence is revolutionizing the technology landscape and shaping the future of software development.</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-clock"></i> 5 min read</span>
+                            <span><i class="far fa-calendar"></i> Mar 15, 2024</span>
+                        </div>
+                        <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="blogs/web-dev.html" class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog/web-dev.jpg" alt="Web Development">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-tag">Web Development</span>
+                        <h3 class="blog-title">Modern Web Development: Best Practices for 2024</h3>
+                        <p class="blog-excerpt">Learn about the latest trends, tools, and techniques that are shaping modern web development practices.</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-clock"></i> 7 min read</span>
+                            <span><i class="far fa-calendar"></i> Mar 12, 2024</span>
+                        </div>
+                        <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="blogs/cloud-computing.html" class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog/cloud-computing.jpg" alt="Cloud Computing">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-tag">Cloud Computing</span>
+                        <h3 class="blog-title">Cloud Computing: The Future of IT Infrastructure</h3>
+                        <p class="blog-excerpt">Discover how cloud computing is revolutionizing the way businesses manage their IT infrastructure and services.</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                            <span><i class="far fa-calendar"></i> Mar 10, 2024</span>
+                        </div>
+                        <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="blogs.html" class="cta-primary">View All Blogs</a>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Add Footer Section -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo-section">
+                <div class="footer-logo">
+                    <img src="logo.jpg" alt="TechToFun Logo">
+                </div>
+                <p>Making technology learning fun and accessible for everyone</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Our Services</a></li>
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <!-- <li><a href="#blog"><i class="fas fa-chevron-right"></i> Blog</a></li> -->
+                    <li><a href="#mentoring"><i class="fas fa-chevron-right"></i> Mentoring</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-graduation-cap"></i> Free Courses</a></li>
+                    <li><a href="#"><i class="fas fa-newspaper"></i> Tech News</a></li>
+                    <li><a href="#"><i class="fas fa-lightbulb"></i> Hackathons</a></li>
+                    <li><a href="#"><i class="fas fa-calendar"></i> Events</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <p>Join our community and stay updated with the latest tech news and events.</p>
+                <div class="footer-social">
+                    <a href="https://chat.whatsapp.com/HPoRpcD944UCNViMqYHfrX" class="social-icon" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://t.me/techtofun" class="social-icon" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/tech-to-fun/" class="social-icon" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/_techtofun" class="social-icon" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@techtofun" class="social-icon" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TechToFun. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add Theme Switcher functionality
+        const themeSwitcher = document.querySelector('.theme-switcher');
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const theme = button.getAttribute('data-theme');
+                document.documentElement.setAttribute('data-theme', theme);
+                
+                // Save theme preference
+                localStorage.setItem('preferred-theme', theme);
+                
+                // Update active state
+                themeButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+
+        // Load saved theme preference
+        window.addEventListener('load', () => {
+            const savedTheme = localStorage.getItem('preferred-theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                const activeButton = document.querySelector(`[data-theme="${savedTheme}"]`);
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                }
+            }
+        });
+
+        // Header scroll effect
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Add animation delay to child elements
+                    const children = entry.target.querySelectorAll('.service-card, .blog-card, .social-card');
+                    children.forEach((child, index) => {
+                        child.style.animationDelay = `${index * 0.2}s`;
+                    });
+                }
+            });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effect to service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add animation to service features
+        document.querySelectorAll('.service-card').forEach(card => {
+            const features = card.querySelectorAll('.service-features li');
+            features.forEach((feature, index) => {
+                feature.style.transitionDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Add typing effect to hero text
+        const heroText = document.querySelector('.hero h1');
+        const text = heroText.textContent;
+        heroText.textContent = '';
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                heroText.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        // Start typing effect when page loads
+        window.addEventListener('load', typeWriter);
+
+        // Enhanced number animation
+        function animateNumbers() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                let current = 0;
+                const increment = target / 50;
+                const duration = 2000; // 2 seconds
+                const stepTime = duration / 50;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        clearInterval(timer);
+                        current = target;
+                    }
+                    stat.textContent = Math.floor(current) + '+';
+                }, stepTime);
+            });
+        }
+
+        // Add scroll-triggered animations
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            
+            // Parallax effect for blog images
+            document.querySelectorAll('.blog-image').forEach(image => {
+                const speed = 0.5;
+                image.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+
+            // Fade in elements as they come into view
+            document.querySelectorAll('.section').forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+
+        // Initialize all animations
+        window.addEventListener('load', () => {
+            typeWriter();
+            animateCards();
+            animateNumbers();
+            
+            // Add initial animation to hero section
+            document.querySelector('.hero-content').classList.add('visible');
+        });
+
+        // Add animation to timeline items
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        timelineItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-50px)';
+            item.style.transition = 'all 0.6s ease';
+            timelineObserver.observe(item);
+        });
+
+        // Add animation to stat boxes
+        const statBoxes = document.querySelectorAll('.stat-box');
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statBoxes.forEach(box => {
+            box.style.opacity = '0';
+            box.style.transform = 'translateY(50px)';
+            box.style.transition = 'all 0.6s ease';
+            statObserver.observe(box);
+        });
+    </script>
+</body>
+</html>
