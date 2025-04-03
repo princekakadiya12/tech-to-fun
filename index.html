@@ -281,6 +281,169 @@
         .nav-links a:hover::after {
             width: 80%;
         }
+        
+        /* Mobile Menu Styles */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            margin: 6px 0;
+            background-color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: all 0.5s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(9px, 6px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -5px);
+            }
+
+            /* Hero section responsive */
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                padding: 0 1rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            /* Services grid responsive */
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* Theme switcher responsive */
+            .theme-switcher {
+                top: auto;
+                bottom: 20px;
+                right: 20px;
+                flex-direction: row;
+                padding: 0.5rem;
+            }
+
+            .theme-btn {
+                width: 30px;
+                height: 30px;
+            }
+
+            /* CTA buttons responsive */
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto 2rem;
+            }
+
+            .cta-primary, .cta-secondary {
+                width: 100%;
+                text-align: center;
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            /* About section responsive */
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            /* Blog grid responsive */
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Contact grid responsive */
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Footer responsive */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                width: 85%;
+            }
+
+            .hero-logo {
+                width: 150px;
+                height: 150px;
+            }
+        }
 
         /* Enhanced Landing Page */
         .hero {
@@ -1472,6 +1635,11 @@
             <div class="logo">
                 <img src="logo.jpg" alt="TechToFun Logo">
             </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#services">Services</a>
@@ -1497,11 +1665,11 @@
             </div>
             <div class="hero-stats">
                 <div class="stat-item">
-                    <div class="stat-number">10K+</div>
+                    <div class="stat-number">1K+</div>
                     <div class="stat-label">Active Members</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">500+</div>
+                    <div class="stat-number">50+</div>
                     <div class="stat-label">Success Stories</div>
                 </div>
                 <div class="stat-item">
@@ -1616,9 +1784,9 @@
                     <h3>Our Community</h3>
                     <p>Join a vibrant community of tech enthusiasts, learners, and professionals from around the world.</p>
                     <ul class="about-features">
-                        <li>10K+ Active Members</li>
+                        <li>1K+ Active Members</li>
                         <li>50+ Expert Mentors</li>
-                        <li>500+ Success Stories</li>
+                        <li>50+ Success Stories</li>
                         <li>24/7 Support</li>
                     </ul>
                 </div>
@@ -1641,14 +1809,14 @@
             <div class="about-stats">
                 <div class="stat-box">
                     <div class="stat-number">100+</div>
-                    <div class="stat-label">Free Courses</div>
+                    <div class="stat-label">Free Coaching</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number">50+</div>
+                    <div class="stat-number">5+</div>
                     <div class="stat-label">Partner Companies</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number">1000+</div>
+                    <div class="stat-number">100+</div>
                     <div class="stat-label">Projects Completed</div>
                 </div>
                 <div class="stat-box">
@@ -1940,6 +2108,25 @@
             }
         });
 
+        // Mobile menu toggle functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a nav link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+        
         // Intersection Observer for scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1955,6 +2142,16 @@
         }, { 
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (navLinks && navLinks.classList.contains('active') && 
+                !navLinks.contains(e.target) && 
+                !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
         });
 
         document.querySelectorAll('.section').forEach(section => {
