@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Opportunities - TechToFun</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Reuse the theme variables and base styles from one.html */
+        :root {
+            --primary: #ffffff;
+            --secondary: #000000;
+            --accent: #64ffda;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --bg-primary: #000000;
+            --bg-secondary: #111111;
+            --bg-card: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 120px;
+            height: 60px;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            padding: 120px 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title h1 {
+            font-size: 3rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .page-title p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Internship Categories */
+        .internship-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .category-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .category-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .positions-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .positions-list li {
+            margin: 0.5rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .positions-list li::before {
+            content: '→';
+            color: var(--accent);
+        }
+
+        /* Application Process */
+        .application-process {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .process-title {
+            color: var(--text-primary);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+        }
+
+        .step-title {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            margin-bottom: 4rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-title {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Application Form */
+        .application-form {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .form-title {
+            color: var(--text-primary);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 2rem auto;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            width: 180px;
+            height: 90px;
+            margin: 0 auto 2rem;
+        }
+
+        .footer-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .footer p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                padding: 100px 1rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.jpg" alt="TechToFun Logo">
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#about">About</a>
+                <!-- <a href="blogs.html">Blog</a> -->
+                <a href="internships.html">Internships</a>
+                <a href="index.html#mentoring">Mentoring</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="page-title">
+            <h1>Internship Opportunities</h1>
+            <p>Join our team and gain valuable experience in various tech and creative roles</p>
+        </div>
+
+        <div class="internship-categories">
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Technical Roles</h3>
+                <p>Join our technical team and work on exciting projects</p>
+                <ul class="positions-list">
+                    <li>Web Development Intern</li>
+                    <li>Mobile App Development Intern</li>
+                    <li>UI/UX Design Intern</li>
+                    <li>DevOps Intern</li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-pen-fancy"></i>
+                </div>
+                <h3>Content Creation</h3>
+                <p>Create engaging content for our community</p>
+                <ul class="positions-list">
+                    <li>Technical Writer</li>
+                    <li>Blog Content Creator</li>
+                    <li>Video Content Creator</li>
+                    <li>Social Media Content Writer</li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3>Education & Training</h3>
+                <p>Help others learn and grow</p>
+                <ul class="positions-list">
+                    <li>Seminar Speaker</li>
+                    <li>Technical Trainer</li>
+                    <li>Workshop Coordinator</li>
+                    <li>Course Content Developer</li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>Design & Media</h3>
+                <p>Create visually appealing content</p>
+                <ul class="positions-list">
+                    <li>Graphic Designer</li>
+                    <li>Video Editor</li>
+                    <li>Social Media Designer</li>
+                    <li>Brand Designer</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="application-process">
+            <h2 class="process-title">Application Process</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Submit Application</h3>
+                    <p class="step-description">Send your resume and portfolio to our email address</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Review Process</h3>
+                    <p class="step-description">Our team will review your application within 5-7 days</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Interview</h3>
+                    <p class="step-description">Selected candidates will be invited for an interview</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Onboarding</h3>
+                    <p class="step-description">Successful candidates will join our team and start their journey</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="benefits-section">
+            <h2 class="process-title">Internship Benefits</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="benefit-title">Certificate</h3>
+                    <p class="benefit-description">Receive an official certificate upon successful completion</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="benefit-title">Recommendation</h3>
+                    <p class="benefit-description">Get a recommendation letter from our community</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="benefit-title">Networking</h3>
+                    <p class="benefit-description">Connect with industry professionals and expand your network</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="benefit-title">Experience</h3>
+                    <p class="benefit-description">Gain hands-on experience in your chosen field</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="application-form">
+            <h2 class="form-title">Apply Now</h2>
+            <form id="internshipForm" action="mailto:techtofun0@gmail.com" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="role">Desired Role</label>
+                    <select id="role" name="role" required>
+                        <option value="">Select a role</option>
+                        <option value="web-dev">Web Development Intern</option>
+                        <option value="mobile-dev">Mobile App Development Intern</option>
+                        <option value="ui-ux">UI/UX Design Intern</option>
+                        <option value="devops">DevOps Intern</option>
+                        <option value="technical-writer">Technical Writer</option>
+                        <option value="content-creator">Content Creator</option>
+                        <option value="seminar-speaker">Seminar Speaker</option>
+                        <option value="graphic-designer">Graphic Designer</option>
+                        <option value="video-editor">Video Editor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="resume">Resume (PDF)</label>
+                    <input type="file" id="resume" name="resume" accept=".pdf" required>
+                </div>
+                <div class="form-group">
+                    <label for="portfolio">Portfolio Link (Optional)</label>
+                    <input type="url" id="portfolio" name="portfolio">
+                    <small style="color: var(--text-secondary); font-size: 0.8rem; display: block; margin-top: 0.5rem;">Add your portfolio link if you have one</small>
+                </div>
+                <div class="form-group">
+                    <label for="message">Cover Letter</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="logo.jpg" alt="TechToFun Logo">
+        </div>
+        <p>Making technology learning fun and accessible for everyone</p>
+        <div class="social-links">
+            <a href="https://chat.whatsapp.com/HPoRpcD944UCNViMqYHfrX" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://t.me/techtofun" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://www.linkedin.com/company/tech-to-fun/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/_techtofun" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@techtofun" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>Contact us: techtofun0@gmail.com</p>
+        <p>&copy; 2024 TechToFun. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('internshipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(this);
+            let emailBody = `New Internship Application:\n\n`;
+            emailBody += `Name: ${formData.get('name')}\n`;
+            emailBody += `Email: ${formData.get('email')}\n`;
+            emailBody += `Phone: ${formData.get('phone')}\n`;
+            emailBody += `Role: ${formData.get('role')}\n`;
+            emailBody += `Portfolio: ${formData.get('portfolio') || 'Not provided'}\n\n`;
+            emailBody += `Cover Letter:\n${formData.get('message')}`;
+
+            const mailtoLink = `mailto:techtofun0@gmail.com?subject=New Internship Application - ${formData.get('role')}&body=${encodeURIComponent(emailBody)}`;
+            
+            window.location.href = mailtoLink;
+
+            setTimeout(() => {
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 
